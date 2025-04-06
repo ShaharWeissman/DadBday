@@ -1,0 +1,29 @@
+/dad-timeline-app
+├── app                     # App Router main directory
+│   ├── page.tsx            # Home page
+│   ├── layout.tsx          # Root layout
+│   ├── about/              # About page (if needed)
+│   │   └── page.tsx
+│   ├── timeline/           # Timeline page
+│   │   └── page.tsx
+│   └── globals.css         # Global CSS
+├── components              # UI Components
+│   ├── ui/                 # Reusable UI elements
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   └── Navigation.tsx
+│   ├── home/               # Home page specific components
+│   │   ├── Hero.tsx
+│   │   └── FeaturedImages.tsx
+│   └── timeline/           # Timeline specific components
+│       ├── TimelineItem.tsx
+│       └── TimelineList.tsx
+├── data                    # JSON data files
+│   ├── home.json           # Home page data
+│   └── timeline.json       # Timeline data
+├── public                  # Static assets
+│   └── images/             # Images for the site
+├── types                   # TypeScript types
+├── lib                     # Utility functions
+├── next.config.js
+└── tailwind.config.js

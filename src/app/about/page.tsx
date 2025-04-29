@@ -1,49 +1,40 @@
 "use client";
 import Image from "next/image";
+import aboutData from "@/data/aboutData";
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-8">
-      {/* Outer container with two columns on larger screens */}
-      <div className="max-w-5xl w-full flex flex-col md:flex-row gap-8">
-        {/* Left side: Text */}
-        <div className="md:w-1/2 space-y-4 self-center">
-          <h1 className="text-4xl font-bold">הסיפור של אמיר</h1>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            חוגגים יום הולדת לאמיר 70
-          </p>
-          <p className="text-md text-gray-600">
-            סאראלה ודוד הקו פאונדר של אמיר70, הם הורים של אמיר. הם גרים
-            בברצלונה, ספרד. סאראלה היא אמא נהדרת ודוד הוא אבא מדהים. הם אוהבים
-            לבלות עם המשפחה והחברים שלהם. הם תמיד שמחים לעזור לאחרים ולתמוך בהם.
-            הם אוהבים לטפח את הקשרים עם המשפחה והחברים שלהם. הם תמיד שמחים להיות
-            חלק מהקהילה שלהם.
-          </p>
-        </div>
-
-        {/* Right side: Red container with two images */}
-        <div className="md:w-1/2 flex flex-col gap-6">
-          {/* Red container for the first image */}
-          <div className="bg-red-500 rounded-lg overflow-hidden h-60 relative">
-            <Image
-              src="/images/saba.jpg" // Place your first image in /public/images/
-              alt="Dad's younger days"
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-
-          {/* Red container for the second image */}
-          <div className="bg-blue-500 rounded-lg overflow-hidden h-60 relative">
-            <Image
-              src="/images/dad-later.jpg" // Place your second image in /public/images/
-              alt="Dad’s more recent snapshot"
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
+    <main className="min-h-screen bg-white flex flex-col items-center justify-center p-8 pt-32">
+      <div className="max-w-6xl w-full flex flex-col gap-20">
+        {aboutData.map((item, idx) => (
+          <section
+            key={item.title}
+            className={`flex flex-col md:flex-row items-center gap-12 ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+          >
+            {/* Image side */}
+            <div className="w-full md:w-1/2">
+              <div className="rounded-3xl overflow-hidden shadow-2xl h-72 md:h-96 relative bg-gray-100">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+            </div>
+            {/* Text side */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-blue-800 mb-4 leading-tight">
+                {item.title}
+              </h2>
+              <p className="text-lg md:text-xl text-gray-700 whitespace-pre-line">
+                {item.text}
+              </p>
+            </div>
+          </section>
+        ))}
       </div>
-    </div>
+    </main>
   );
 }

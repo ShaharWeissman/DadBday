@@ -42,8 +42,8 @@ const products: Product[] = [
 ];
 
 const ProductCard: FC<{ product: Product }> = ({ product }) => (
-  <article className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
-    <div className="relative w-full h-48">
+  <article className="flex flex-col bg-white rounded-3xl shadow-xl overflow-hidden">
+    <div className="relative w-full h-48 rounded-t-3xl overflow-hidden">
       <Image
         src={product.imageSrc}
         alt={product.imageAlt}
@@ -60,8 +60,8 @@ const ProductCard: FC<{ product: Product }> = ({ product }) => (
 
 export default function ProductsPage() {
   return (
-    <main className="bg-gray-50 py-16">
-      <div className="max-w-7xl mx-auto px-6">
+    <main className="bg-gray-50 py-16 pt-32 min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 rounded-3xl shadow-2xl bg-white p-8">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-8">
           Our Products
         </h1>

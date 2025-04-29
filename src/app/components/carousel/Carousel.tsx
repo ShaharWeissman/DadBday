@@ -22,58 +22,88 @@ export default function Carousel() {
   const nextIdx = (current + 1) % length;
 
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="py-12 w-full">
       {/* Header */}
-      <h2 className="text-center text-3xl font-bold text-gray-800 mb-6">
-        Featured Memories
+      <h2 className="text-center text-5xl md:text-6xl font-extrabold mb-8 tracking-tight bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
+        זכרונות נבחרים
       </h2>
 
-      {/* 3‑panel carousel */}
-      <div className="flex items-center justify-center space-x-4 px-4">
-        {/* Previous */}
-        <div className="flex-none w-1/4 aspect-video relative overflow-hidden rounded-lg shadow-lg opacity-50 hover:opacity-75 transition-opacity duration-500">
-          <Image
-            src={carouselImages[prevIdx]}
-            alt={`Slide ${prevIdx + 1}`}
-            fill
-            className="object-contain"
-          />
-        </div>
+      {/* Carousel Container */}
+      <div className="relative flex items-center justify-center px-2 md:px-8">
+        {/* Prev Button */}
+        <button
+          aria-label="Previous"
+          onClick={() => setCurrent(prevIdx)}
+          className="absolute left-0 z-10 bg-white/80 hover:bg-blue-100 border border-blue-200 rounded-full shadow-lg w-12 h-12 flex items-center justify-center text-blue-700 text-2xl transition-all duration-200 cursor-pointer md:-left-6 top-1/2 -translate-y-1/2"
+        >
+          ‹
+        </button>
+        {/* Next Button */}
+        <button
+          aria-label="Next"
+          onClick={() => setCurrent(nextIdx)}
+          className="absolute right-0 z-10 bg-white/80 hover:bg-blue-100 border border-blue-200 rounded-full shadow-lg w-12 h-12 flex items-center justify-center text-blue-700 text-2xl transition-all duration-200 cursor-pointer md:-right-6 top-1/2 -translate-y-1/2"
+        >
+          ›
+        </button>
 
-        {/* Current */}
-        <div className="flex-none w-1/2 aspect-video relative overflow-hidden rounded-xl shadow-2xl transform scale-105 transition-transform duration-700 ease-in-out">
-          <Image
-            src={carouselImages[current]}
-            alt={`Slide ${current + 1}`}
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+        {/* Slides */}
+        <div className="w-full flex items-center justify-center gap-4">
+          {/* Previous Slide (peek) */}
+          <div className="hidden md:block flex-none w-1/5 aspect-video relative overflow-hidden rounded-2xl shadow-lg scale-95 opacity-60 blur-[2px] transition-all duration-700">
+            <Image
+              src={carouselImages[prevIdx]}
+              alt={`Slide ${prevIdx + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
 
-        {/* Next */}
-        <div className="flex-none w-1/4 aspect-video relative overflow-hidden rounded-lg shadow-lg opacity-50 hover:opacity-75 transition-opacity duration-500">
-          <Image
-            src={carouselImages[nextIdx]}
-            alt={`Slide ${nextIdx + 1}`}
-            fill
-            className="object-contain"
-          />
+          {/* Current Slide */}
+          <div className="flex-1 min-w-0 max-w-[700px] aspect-video relative overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-200 bg-white/80 scale-105 transition-all duration-700 animate-fade-in">
+            <Image
+              src={carouselImages[current]}
+              alt={`Slide ${current + 1}`}
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+
+          {/* Next Slide (peek) */}
+          <div className="hidden md:block flex-none w-1/5 aspect-video relative overflow-hidden rounded-2xl shadow-lg scale-95 opacity-60 blur-[2px] transition-all duration-700">
+            <Image
+              src={carouselImages[nextIdx]}
+              alt={`Slide ${nextIdx + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
       </div>
 
       {/* Indicator Dots */}
-      <div className="mt-6 flex justify-center space-x-3">
+      <div className="mt-8 flex justify-center space-x-3">
         {carouselImages.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`h-3 w-3 rounded-full transition-colors duration-300 ${
-              idx === current ? "bg-blue-600" : "bg-gray-400/70"
+            className={`h-3 w-3 rounded-full transition-all duration-300 cursor-pointer border-2 border-white shadow-sm ${
+              idx === current ? "bg-blue-600 scale-125" : "bg-gray-300"
             }`}
           />
         ))}
       </div>
+
+      <style jsx global>{`
+        @keyframes fade-in {
+          0% { opacity: 0; transform: scale(0.97); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+      `}</style>
     </section>
   );
 }

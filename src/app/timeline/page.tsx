@@ -22,7 +22,7 @@ export default function TimelinePage() {
   const currentItem = timelineData[currentIndex];
 
   return (
-    <div className="min-h-screen mt-6 flex items-center justify-center bg-gradient-to-br from-white to-blue-50 p-6 relative">
+    <div className="min-h-screen mt-6 flex items-center justify-center bg-gradient-to-br from-white to-blue-50 p-6 pt-32 relative">
       {/* Left Arrow (only if not on first slide) */}
       {currentIndex > 0 && (
         <button
@@ -42,7 +42,7 @@ export default function TimelinePage() {
       )}
 
       {/* The main card */}
-      <div className="w-full max-w-3xl bg-white shadow-2xl rounded-xl p-8">
+      <div className="w-full max-w-3xl bg-white shadow-2xl rounded-3xl p-8">
         {/* Year range */}
         <h2 className="text-4xl font-bold text-bluey text-center mb-8">
           {currentItem.yearRange}
@@ -51,7 +51,7 @@ export default function TimelinePage() {
         {/* Image + Text */}
         <div className="flex flex-col items-center">
           {/* Image box with a border */}
-          <div className="relative w-80 h-80 rounded-xl overflow-hidden shadow-md border-4 border-blue-300">
+          <div className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-xl border-4 border-blue-300">
             <Image
               src={currentItem.image}
               alt={currentItem.yearRange}

@@ -30,50 +30,60 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <main className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6 py-20">
-        <div className="flex-1 space-y-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-blue-900">
-            Welcome to Dad’s 70th Celebration!
+      <main className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12 px-6 py-20 pt-32 bg-white rounded-3xl shadow-2xl">
+        {/* Text (Hebrew, right) */}
+        <div className="flex-1 space-y-8 text-right md:pr-10">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-blue-900 leading-tight">
+            ברוכים הבאים לאתר של אמיר ליום הולדת 70!
           </h1>
-          <p className="text-lg md:text-xl text-gray-700">
-            We’re celebrating 70 years of epic jokes, legendary BBQ, and
-            fatherly wisdom.
+          <p className="text-2xl md:text-3xl text-blue-700 font-semibold leading-relaxed">
+            70 שנות ניהול חוצה דורות, גאונות, פתרונות יצירתיים, וסטארטאפ אחד ששמו: משפחה.
+            <br />
+            <span className="text-base text-gray-500 font-normal">All angels come</span>
           </p>
           <Button
             onClick={handleStartParty}
             variant="filled"
-            className="px-8 py-4 font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-all">
-            Start the Party
+            size="lg"
+            shadow
+            className="rounded-2xl bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 border-none text-2xl px-12 py-5 hover:from-blue-800 hover:to-blue-500 focus:ring-blue-300 transition-all duration-300 animate-bounce-slow"
+          >
+            🎉 בואו נתחיל את המסיבה 🎉
           </Button>
         </div>
-        <div className="flex-1 flex justify-center">
-          <Image
-            src="/images/logo.jpg"
-            alt="Dad's Logo"
-            width={350}
-            height={350}
-            className="rounded-xl shadow-xl object-cover"
-            priority
-          />
+        {/* Photo (left) */}
+        <div className="flex-1 flex justify-center items-center">
+          <div className="relative w-[340px] h-[340px] md:w-[400px] md:h-[400px] bg-gradient-to-br from-blue-100 via-blue-200 to-white rounded-full shadow-2xl flex items-center justify-center border-4 border-blue-200">
+            <Image
+              src="/images/logo.jpg"
+              alt="Dad's Logo"
+              fill
+              className="object-cover rounded-full shadow-xl"
+              priority
+            />
+            <div className="absolute bottom-4 right-4 bg-white/80 px-4 py-2 rounded-xl shadow text-blue-700 font-bold text-lg border border-blue-200 animate-pulse">
+              אמיר 70
+            </div>
+          </div>
         </div>
       </main>
 
       {/* Carousel Section */}
-      <section className="w-full bg-gray-700 py-12">
+      <section className="w-full bg-gray-700 py-12 rounded-3xl shadow-2xl mt-8">
         <div className="max-w-7xl mx-auto px-6">
           <Carousel />
         </div>
       </section>
 
       {/* Company Showcase */}
-      <section className="w-full bg-white py-12">
+      <section className="w-full bg-white py-12 rounded-3xl shadow-2xl mt-8">
         <div className="max-w-7xl mx-auto px-6">
           <Recommends />
         </div>
       </section>
 
       {/* Customer Gallery Text */}
-      <section className="w-full bg-gray-100 py-12">
+      <section className="w-full bg-gray-100 py-12 rounded-3xl shadow-2xl mt-8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-blue-900 mb-4">
             Customer Gallery

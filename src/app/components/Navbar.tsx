@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./ui/Button";
 import clsx from "clsx";
 import { useState, useRef } from "react";
 
@@ -14,7 +13,11 @@ const NavItem = ({
   children: React.ReactNode;
 }) => (
   <Link href={href}>
-    <Button variant="outline">{children}</Button>
+    <button
+      className="px-6 py-2 rounded-xl font-semibold text-blue-800 bg-white shadow-sm border border-blue-200 hover:bg-blue-50 hover:text-blue-900 hover:shadow-md active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200 cursor-pointer"
+    >
+      {children}
+    </button>
   </Link>
 );
 
@@ -23,7 +26,6 @@ export default function Navbar() {
   const timeoutRef = useRef<number | null>(null);
 
   function handleMouseEnter() {
-    // Clear any hide timer when mouse enters
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -31,77 +33,80 @@ export default function Navbar() {
   }
 
   function handleMouseLeave() {
-    // Wait 500ms before hiding the dropdown
     timeoutRef.current = window.setTimeout(() => {
       setShowCompanyMenu(false);
     }, 500);
   }
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-md z-50">
+    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl shadow-md z-50 border-b border-blue-100">
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between relative">
         {/* Logo */}
         <div className="flex items-center gap-4">
           <Image
-            src="/images/amir70.png"
-            width={100}
-            height={50}
+            src="/images/hero/logo.jpg"
+            width={160}
+            height={80}
             alt="Amir70 Logo"
-            className="object-contain"
+            className="rounded-2xl shadow-lg object-contain"
           />
         </div>
 
         {/* Nav Links */}
-        <ul className="flex-1 flex justify-center items-center gap-6 uppercase font-semibold text-sm">
+        <ul className="flex-1 flex justify-center items-center gap-7 font-semibold text-base">
           <li>
-            <NavItem href="/about">About</NavItem>
+            <NavItem href="/">דף הבית</NavItem>
           </li>
           <li>
-            <NavItem href="/products">Products</NavItem>
+            <NavItem href="/about">הסיפור שלנו</NavItem>
           </li>
-
-          {/* Company Dropdown with Delay on Mouse Leave */}
+          <li>
+            <NavItem href="/products">מוצרים</NavItem>
+          </li>
           <li
             className="relative"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}>
-            <Button variant="outline">Company</Button>
+            <button
+              className="px-6 py-2 rounded-xl font-semibold text-blue-800 bg-white shadow-sm border border-blue-200 hover:bg-blue-50 hover:text-blue-900 hover:shadow-md active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200 cursor-pointer"
+            >
+              החברה
+            </button>
             <ul
               className={clsx(
-                "absolute top-full left-0 mt-1 w-40 rounded-md shadow-lg ring-1 ring-gray-300 bg-white p-2 transition-all duration-300 ease-out",
+                "absolute top-full left-0 mt-1 w-56 rounded-xl shadow-lg ring-1 ring-blue-200 bg-white p-3 transition-all duration-200 ease-out z-50 flex flex-col gap-2 border border-blue-100",
                 {
-                  "opacity-0 pointer-events-none scale-95": !showCompanyMenu,
+                  "opacity-0 pointer-events-none scale-98": !showCompanyMenu,
                   "opacity-100 pointer-events-auto scale-100": showCompanyMenu,
                 }
-              )}>
+              )}
+            >
               <li>
                 <Link href="/organization">
-                  <span className="cursor-pointer block w-full px-2 py-2 rounded-md text-bluey hover:bg-gray-100 transition-colors">
-                    Organization
+                  <span className="block w-full px-4 py-2 rounded-lg text-blue-800 font-semibold hover:bg-blue-50 hover:text-blue-900 transition-colors border border-transparent hover:border-blue-200 cursor-pointer">
+                    עץ החברה
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/join">
-                  <span className="cursor-pointer block w-full px-2 py-2 rounded-md text-bluey hover:bg-gray-100 transition-colors">
-                    Join Us
+                  <span className="block w-full px-4 py-2 rounded-lg text-blue-800 font-semibold hover:bg-blue-50 hover:text-blue-900 transition-colors border border-transparent hover:border-blue-200 cursor-pointer">
+                    הצטרפו אלינו
                   </span>
                 </Link>
               </li>
             </ul>
           </li>
-
           <li>
-            <NavItem href="/">Home</NavItem>
+            <Link href="/timeline">
+              <button
+                className="px-7 py-2 rounded-xl font-semibold text-white bg-blue-700 shadow-sm border border-blue-700 hover:bg-blue-800 hover:shadow-md active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200 cursor-pointer"
+              >
+                ציר זמן
+              </button>
+            </Link>
           </li>
         </ul>
-
-        {/* Timeline Button */}
-        <div>
-          <Link href="/timeline">
-            <Button variant="filled">Timeline</Button>
-          </Link>
-        </div>
       </div>
     </nav>
   );

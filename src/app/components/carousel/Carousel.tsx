@@ -24,7 +24,7 @@ export default function Carousel() {
   return (
     <section className="py-12 w-full">
       {/* Header */}
-      <h2 className="text-center text-5xl md:text-6xl font-extrabold mb-8 tracking-tight bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
+      <h2 className="text-right text-5xl md:text-6xl font-extrabold mb-8 tracking-tight bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text text-transparent drop-shadow-lg" dir="rtl">
         זכרונות נבחרים
       </h2>
 

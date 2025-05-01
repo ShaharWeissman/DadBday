@@ -6,5 +6,5 @@ export const carouselImages: string[] = [
   "/images/carousel/army1.jpg",
   "/images/carousel/young1.jpg",
   "/images/carousel/pavaroti.jpg",
-  // add as many slides as you like
+  "/images/carousel/jobs.png",
 ];

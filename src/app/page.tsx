@@ -86,10 +86,8 @@ export default function Home() {
       <section className="w-full bg-gray-100 py-12 rounded-3xl shadow-2xl mt-8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-blue-900 mb-4">
-            Customer Gallery
           </h2>
           <p className="text-lg text-gray-700">
-            This section will showcase a gallery of our satisfied customers.
           </p>
         </div>
       </section>

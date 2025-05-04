@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      '1000logos.net',
-      'upload.wikimedia.org'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '1000logos.net',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/wikipedia/commons/**',
+      },
     ],
   },
 };

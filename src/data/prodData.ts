@@ -10,7 +10,7 @@ export const products = [
     name: "אלה",
     description:
       "החיוך, האנרגיה, והשובבות. אלה היא לב פועם עם נוכחות שממלאת את החדר.",
-    image: "/images/products/ella.png",
+    image: "/images/products/placeholder.png",
     tag: "כוכבת",
   },
   {
@@ -31,28 +31,28 @@ export const products = [
     name: "כבל USB חד־פעמי",
     description:
       "מוצר מהפכני: מתחבר פעם אחת בלבד ואז נעלם לנצח. פתרון מושלם למי שלא רוצה שיחטטו בקבצים שלו.",
-    image: "/images/products/usb.png",
+    image: "/images/products/placeholder.png",
     tag: "פטנט אבא",
   },
   {
     name: "כרית לחשיבה עמוקה",
     description:
       "פיתוח בלעדי: כרית שמזהה הרהורים כבדים ויוצרת סביבך שקט מוחלט. עובד במיוחד בשנ״צ.",
-    image: "/images/products/thought-pillow.png",
+    image: "/images/products/placeholder.png",
     tag: "שינה פילוסופית",
   },
   {
     name: "מחשבון אינטואיטיבי",
     description:
       "מחשבון שלא באמת מחשב – פשוט מנחש את התוצאה לפי התחושה של אבא. מדויק להפליא (לפעמים).",
-    image: "/images/products/calculator.png",
+    image: "/images/products/placeholder.png",
     tag: "הנדסה יצירתית",
   },
   {
     name: "ערכת בדיחות אבא למתקדמים",
     description:
       "כוללת 72 בדיחות שאף אחד לא ביקש לשמוע, עם הוראות שימוש למצבים מביכים במיוחד.",
-    image: "/images/products/dad-jokes.png",
+    image: "/images/products/placeholder.png",
     tag: "קרינג׳ יוקרתי",
   }
 ];

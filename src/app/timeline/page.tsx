@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import EraTimeline from "@/app/components/timeline/EraTimeline";
-import timelineData from "@/data/timelineData";
-
-const eras = timelineData;
 
 export default function TimelinePage() {
   const [current, setCurrent] = useState(0);

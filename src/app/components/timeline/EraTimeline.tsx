@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef } from "react";
-import timelineData, { TimelineEra } from "@/data/timelineData";
+import timelineData from "@/data/timelineData";
 
 interface EraTimelineProps {
   current: number;
@@ -13,7 +13,7 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
   const [dragging, setDragging] = useState(false);
   const [modal, setModal] = useState<{ image: string; text: string } | null>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const eras: TimelineEra[] = timelineData;
+  const eras = timelineData;
 
   // Drag logic
   const handleDrag = (clientX: number) => {
@@ -53,7 +53,7 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
     handleDrag(clientX);
   };
 
-  const onUp = (e: MouseEvent | TouchEvent) => {
+  const onUp = () => {
     setDragging(false);
     document.body.style.cursor = '';
     window.removeEventListener('mousemove', onMove);

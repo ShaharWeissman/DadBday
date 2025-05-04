@@ -17,16 +17,12 @@ type FormValues = {
 };
 
 const fatherSentences = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-  "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
-  "Cillum dolore eu fugiat nulla pariatur.",
-  "Excepteur sint occaecat cupidatat non proident.",
-  "Sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  "Curabitur pretium tincidunt lacus, non elementum orci.",
-  "Maecenas convallis mauris sit amet sem pulvinar lobortis.",
-  "Vestibulum ante ipsum primis in faucibus orci luctus et.",
+  "ALL ANGELES COMES.",
+  "אוסס ידה חטבילי ג'ונקלילי סירומני או מז'נה או מז'נה ?.",
+  "יום אחד היה לילה!",
+  "נשאלת השאלהההההה - אין כניסה",
+  "אמריקה, אמריקה, אמריקה",
+  "מה קיציס עשה לההההההההההה ?",
 ];
 
 function Modal({

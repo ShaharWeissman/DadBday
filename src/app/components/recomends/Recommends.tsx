@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const recommendations = [
   {
@@ -96,9 +96,9 @@ const recommendations = [
   },
 ];
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 6;
 
-export default function RecommendationsSection() {
+export default function Recommends() {
   const [page, setPage] = useState(0);
   const [fade, setFade] = useState(true);
 
@@ -108,8 +108,8 @@ export default function RecommendationsSection() {
       setTimeout(() => {
         setPage((prev) => (prev + 1) % Math.ceil(recommendations.length / PAGE_SIZE));
         setFade(true);
-      }, 400);
-    }, 6000);
+      }, 450);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -118,40 +118,40 @@ export default function RecommendationsSection() {
   const currentRecs = recommendations.slice(start, end);
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-right text-5xl md:text-6xl font-extrabold text-blue-800 mb-8 tracking-tight drop-shadow-lg" dir="rtl">המלצות</h2>
-        <div className="relative min-h-[480px]">
+    <section className="py-12 bg-white">
+      <div className="max-w-5xl mx-auto px-2">
+        <h2 className="text-right text-4xl md:text-5xl font-extrabold text-blue-800 mb-8 tracking-tight drop-shadow-lg" dir="rtl">לקוחותינו ממליצים</h2>
+        <div className="relative min-h-[340px]">
           <div
-            className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}
+            className={`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4 transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}
           >
             {currentRecs.map((rec, idx) => (
               <div
                 key={idx}
-                className="border rounded-xl p-6 flex flex-col items-center text-right text-blue-900 text-center md:text-right shadow-md hover:shadow-lg transition bg-white"
+                className="border rounded-xl p-4 flex flex-col items-center text-right text-blue-900 text-center md:text-right shadow-md hover:shadow-lg transition bg-white scale-95"
                 dir="rtl"
               >
-                <div className="w-24 h-24 relative mb-4">
+                <div className="w-16 h-16 relative mb-2">
                   <Image
                     src={rec.logo}
                     alt={rec.name}
                     fill
                     className="rounded-full object-contain"
-                    sizes="96px"
-                    priority={idx < 3}
+                    sizes="64px"
+                    priority={idx < 2}
                   />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-right" dir="rtl">{rec.name}</h3>
-                <p className="text-gray-600 text-sm text-right" dir="rtl">{rec.quote}</p>
+                <h3 className="text-lg font-semibold mb-1 text-right" dir="rtl">{rec.name}</h3>
+                <p className="text-gray-600 text-xs text-right" dir="rtl">{rec.quote}</p>
               </div>
             ))}
           </div>
           {/* Page Dots */}
-          <div className="flex justify-center mt-8 gap-2">
+          <div className="flex justify-center mt-6 gap-2">
             {Array.from({ length: Math.ceil(recommendations.length / PAGE_SIZE) }).map((_, i) => (
               <button
                 key={i}
-                className={`h-3 w-3 rounded-full border-2 border-blue-300 transition-all duration-300 ${
+                className={`h-2.5 w-2.5 rounded-full border-2 border-blue-300 transition-all duration-300 ${
                   i === page ? 'bg-blue-600 scale-125' : 'bg-gray-300'
                 }`}
                 onClick={() => {
@@ -159,7 +159,7 @@ export default function RecommendationsSection() {
                   setTimeout(() => {
                     setPage(i);
                     setFade(true);
-                  }, 400);
+                  }, 450);
                 }}
                 aria-label={`Show page ${i + 1}`}
               />

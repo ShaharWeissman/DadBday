@@ -67,13 +67,15 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
   const era = eras[safeCurrent];
 
   return (
-    <section className="w-full min-h-screen flex flex-col items-center select-none bg-gradient-to-b from-blue-50 via-white to-blue-100 motion-safe:animate-fadein pt-32 md:pt-40">
-      <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-8 text-center tracking-tight drop-shadow-lg">המסע בזמן</h2>
-      <div className="relative w-full max-w-7xl flex items-center mb-10 px-4">
+    <section className="w-full min-h-screen flex flex-col items-center select-none bg-gradient-to-b from-blue-50 via-white to-blue-100 motion-safe:animate-fadein pt-24 md:pt-40 px-2 mobile-px">
+      <h2 className="text-2xl md:text-5xl font-bold text-blue-900 mb-6 md:mb-8 text-center tracking-tight drop-shadow-lg mobile-text-sm">
+        המסע בזמן
+      </h2>
+      <div className="relative w-full max-w-7xl flex flex-col items-center mb-6 md:mb-10 px-1 md:px-4">
         {/* Left Navigation Button */}
         {leftRightNav && (
           <button
-            className="absolute -left-16 top-1/2 -translate-y-1/2 bg-white border-2 border-blue-300 rounded-full w-12 h-12 shadow-lg flex items-center justify-center text-blue-700 text-3xl font-bold z-30 hover:bg-blue-50 transition disabled:opacity-30 cursor-pointer"
+            className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 bg-white border-2 border-blue-300 rounded-full w-9 h-9 md:w-12 md:h-12 shadow-lg flex items-center justify-center text-blue-700 text-2xl md:text-3xl font-bold z-30 hover:bg-blue-50 transition disabled:opacity-30 cursor-pointer mobile-hide"
             onClick={() => setCurrent(Math.max(0, safeCurrent - 1))}
             disabled={safeCurrent === 0}
             aria-label="הקודם"
@@ -82,7 +84,7 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
             &#8592;
           </button>
         )}
-        <div className="flex-1 relative flex flex-col items-center">
+        <div className="flex-1 relative flex flex-col items-center w-full">
           <div ref={barRef} className="relative w-full flex items-center">
             <div className="absolute left-0 right-0 top-1/2 h-2 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200 rounded-full -translate-y-1/2 z-0" />
             {/* Draggable cursor */}
@@ -93,11 +95,11 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
               onTouchStart={handleStart}
             >
               <button
-                className="w-10 h-10 rounded-full bg-blue-700 border-4 border-white shadow-lg flex items-center justify-center cursor-pointer transition-transform duration-200 active:scale-95"
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-700 border-4 border-white shadow-lg flex items-center justify-center cursor-pointer transition-transform duration-200 active:scale-95"
                 style={{ touchAction: 'none', cursor: 'pointer' }}
                 aria-label="הזז את הסמן בזמן"
               >
-                <span className="block w-4 h-4 rounded-full bg-white" />
+                <span className="block w-4 h-4 bg-white rounded-full"></span>
               </button>
             </div>
             {/* Era ticks as sets */}
@@ -136,43 +138,41 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
           </button>
         )}
       </div>
-      {/* Era Slide Show Style */}
-      <div className="w-full max-w-5xl flex flex-col items-center overflow-visible bg-white/90 rounded-3xl shadow-2xl p-8 mb-16">
-        <div className="w-full flex flex-col items-center mb-8">
-          <h3 className="text-3xl md:text-4xl font-bold text-blue-900 mb-2 animate-fade-in text-center drop-shadow-lg">
-            {era.title}
-          </h3>
-          <p className="text-lg md:text-xl text-blue-700 text-center font-medium animate-fade-in mb-2">
-            {era.description}
-          </p>
-        </div>
-        {/* Slide show grid: 2 or 3 images per row, centered, with captions below */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-center">
-          {era.cards.map((card, idx) => (
-            <figure key={idx} className="flex flex-col items-center bg-blue-50 rounded-2xl shadow-lg p-4">
-              <button
-                className="relative w-full h-64 md:h-72 rounded-xl overflow-hidden mb-4 flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 focus:outline-none group"
-                onClick={() => setModal(card)}
-                aria-label="הצג תמונה מוגדלת"
-                style={{ cursor: 'zoom-in' }}
-              >
-                <Image
-                  src={card.image}
-                  alt={card.text}
-                  fill
-                  className="object-cover rounded-xl transition-all duration-700 group-hover:brightness-90"
-                  style={{ objectFit: 'cover' }}
-                  sizes="(max-width: 1200px) 100vw, 400px"
-                  priority={idx === 0}
-                />
-                <span className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-20 bg-black/20 rounded-xl" />
-              </button>
-              <figcaption className="text-base md:text-lg text-blue-900 text-center font-semibold mt-2">
-                {card.text}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+      {/* Era content */}
+      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-2 md:p-8 flex flex-col items-center mobile-card-slim">
+        <h3 className="text-xl md:text-4xl font-bold text-blue-900 mb-1 md:mb-2 animate-fade-in text-center drop-shadow-lg mobile-text-sm">
+          {era.title}
+        </h3>
+        <p className="text-base md:text-xl text-blue-700 text-center font-medium animate-fade-in mb-2 mobile-text-sm">
+          {era.description}
+        </p>
+      </div>
+      {/* Slide show grid: 1 image per row on mobile, 2-3 on desktop */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 items-start justify-center mt-3">
+        {era.cards.map((card, idx) => (
+          <figure key={idx} className="flex flex-col items-center bg-blue-50 rounded-2xl shadow-lg p-2 md:p-4 mobile-card-slim">
+            <button
+              className="relative w-full h-44 md:h-72 rounded-xl overflow-hidden mb-2 md:mb-4 flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 focus:outline-none group"
+              onClick={() => setModal(card)}
+              aria-label="הצג תמונה מוגדלת"
+              style={{ cursor: 'zoom-in' }}
+            >
+              <Image
+                src={card.image}
+                alt={card.text}
+                fill
+                className="object-cover rounded-xl transition-all duration-700 group-hover:brightness-90"
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 1200px) 100vw, 400px"
+                priority={idx === 0}
+              />
+              <span className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-20 bg-black/20 rounded-xl" />
+            </button>
+            <figcaption className="text-xs md:text-lg text-blue-900 text-center font-semibold mt-1 md:mt-2 mobile-text-sm">
+              {card.text}
+            </figcaption>
+          </figure>
+        ))}
       </div>
       {/* Modal for image preview */}
       {modal && (
@@ -181,17 +181,17 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
           onClick={() => setModal(null)}
         >
           <div
-            className="relative bg-white rounded-3xl shadow-2xl p-6 max-w-2xl w-full flex flex-col items-center animate-scale-in"
+            className="relative bg-white rounded-3xl shadow-2xl p-3 md:p-6 max-w-xs md:max-w-2xl w-full flex flex-col items-center animate-scale-in mobile-card-slim"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="absolute top-4 left-4 text-3xl text-blue-700 bg-white rounded-full shadow p-2 hover:bg-blue-100 focus:outline-none"
+              className="absolute top-2 left-2 md:top-4 md:left-4 text-2xl md:text-3xl text-blue-700 bg-white rounded-full shadow p-2 hover:bg-blue-100 focus:outline-none"
               onClick={() => setModal(null)}
               aria-label="סגור"
             >
               ×
             </button>
-            <div className="relative w-full h-[420px] md:h-[540px] rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 mb-4">
+            <div className="relative w-full h-60 md:h-[540px] rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 mb-2 md:mb-4">
               <Image
                 src={modal.image}
                 alt={modal.text}
@@ -202,7 +202,7 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
                 priority
               />
             </div>
-            <div className="text-lg md:text-xl text-blue-900 font-semibold text-center mt-2">
+            <div className="text-base md:text-xl text-blue-900 font-semibold text-center mt-1 md:mt-2 mobile-text-sm">
               {modal.text}
             </div>
           </div>

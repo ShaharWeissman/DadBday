@@ -40,3 +40,41 @@ body {
   color: var(--foreground);
   font-family: 'Rubik', Arial, Helvetica, sans-serif;
 }
+
+/* --- MOBILE SIMPLIFICATION --- */
+@media (max-width: 640px) {
+  .mobile-hide {
+    display: none !important;
+  }
+  .mobile-stack {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  .mobile-center {
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .mobile-px {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  .mobile-py {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  .mobile-text-sm {
+    font-size: 1rem !important;
+  }
+  .mobile-card-slim {
+    padding: 0.75rem !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 2px 8px #0001 !important;
+  }
+  .mobile-gap-sm {
+    gap: 0.5rem !important;
+  }
+  .mobile-w-full {
+    width: 100% !important;
+  }
+}

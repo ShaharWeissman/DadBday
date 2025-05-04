@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-bluey {
+    background-color: #1150a8 !important;
+  }
+  .text-bluey {
+    color: #1150a8 !important;
+  }
+  .border-bluey {
+    border-color: #1150a8 !important;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -22,5 +38,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
 }

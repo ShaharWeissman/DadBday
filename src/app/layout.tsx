@@ -1,5 +1,12 @@
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
+import { Rubik } from 'next/font/google';
+
+const rubik = Rubik({
+  subsets: ['hebrew', 'latin'],
+  weight: ['300', '400', '500', '700'],
+  display: 'swap',
+});
 
 export const metadata = {
   title: "Dad70",
@@ -12,11 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-[Rubik]">
+    <html lang="he" className={rubik.className}>
+      <body>
         <Navbar />
         {children}
       </body>

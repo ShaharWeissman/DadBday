@@ -7,4 +7,5 @@ export const carouselImages: string[] = [
   "/images/carousel/young1.jpg",
   "/images/carousel/pavaroti.jpg",
   "/images/carousel/jobs.jpg",
+  "/images/timeline/80/presentor.jpeg",
 ];

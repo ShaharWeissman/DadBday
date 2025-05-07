@@ -19,7 +19,6 @@ const ProductCards = dynamic(() => import("./components/products/ProductCards"),
 // --- HEADER STYLE CONSTANTS ---
 const sectionHeader = "text-4xl md:text-5xl font-extrabold text-blue-900 mb-2 text-center tracking-tight drop-shadow-lg";
 const sectionHeaderLight = "text-4xl md:text-5xl font-extrabold text-[#d3e3fa] mb-2 text-center tracking-tight drop-shadow-lg";
-const sectionSubHeader = "text-lg md:text-xl text-blue-600 mb-8 text-center font-medium";
 const sectionSubHeaderLight = "text-lg md:text-xl text-blue-200 mb-8 text-center font-medium";
 
 export default function Home() {

@@ -16,9 +16,11 @@ const ProductCards = dynamic(() => import("./components/products/ProductCards"),
   ssr: false,
 });
 
-// --- HEADER STYLE CONSTANT ---
-const sectionHeader = "text-3xl md:text-4xl font-bold text-blue-900 mb-6 text-center tracking-tight drop-shadow-lg";
-const sectionHeaderLight = "text-3xl md:text-4xl font-bold text-[#d3e3fa] mb-6 text-center tracking-tight drop-shadow-lg";
+// --- HEADER STYLE CONSTANTS ---
+const sectionHeader = "text-4xl md:text-5xl font-extrabold text-blue-900 mb-2 text-center tracking-tight drop-shadow-lg";
+const sectionHeaderLight = "text-4xl md:text-5xl font-extrabold text-[#d3e3fa] mb-2 text-center tracking-tight drop-shadow-lg";
+const sectionSubHeader = "text-lg md:text-xl text-blue-600 mb-8 text-center font-medium";
+const sectionSubHeaderLight = "text-lg md:text-xl text-blue-200 mb-8 text-center font-medium";
 
 export default function Home() {
   const router = useRouter();
@@ -40,7 +42,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <main className="max-w-5xl mx-auto flex flex-col md:flex-row-reverse items-center gap-8 px-3 py-10 pt-20 bg-white rounded-2xl shadow-xl">
+      <main className="max-w-5xl mx-auto flex flex-col md:flex-row-reverse items-center gap-8 px-3 py-12 pt-24 bg-white rounded-2xl shadow-xl">
         {/* Text (Hebrew, right) */}
         <div className="flex-1 space-y-6 text-right md:pr-6">
           <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 leading-tight">
@@ -79,31 +81,42 @@ export default function Home() {
       </main>
 
       {/* Carousel Section */}
-      <section className="w-full py-8 mt-2 bg-[#495872]">
+      <section className="w-full py-20 mt-4 bg-[#495872]">
         <div className="max-w-5xl mx-auto px-3 md:px-6">
           <h2 className={sectionHeaderLight}>
             זכרונות נבחרים
           </h2>
+          <p className={sectionSubHeaderLight}>
+            רגעים מיוחדים שנשארים איתנו לנצח
+          </p>
           <Carousel />
         </div>
       </section>
 
       {/* Product Section */}
-      <section className="mt-6">
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
-          <h2 className={sectionHeader}>
+      <section className="mt-6 py-8">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-2 text-center tracking-tight drop-shadow-lg">
             המוצרים שלנו
           </h2>
-          <ProductCards />
+          <p className="text-base md:text-lg text-blue-600 mb-6 text-center font-medium">
+            המשפחה המדהימה שיצרנו יחד
+          </p>
+          <div className="w-full max-w-3xl mx-auto">
+            <ProductCards />
+          </div>
         </div>
       </section>
 
       {/* Organization Section */}
-      <section className="mt-6 bg-[#495872]">
-        <div className="max-w-3xl mx-auto rounded-2xl shadow-lg p-6 flex flex-col items-center">
-          <h2 className={sectionHeaderLight}>
+      <section className="mt-6 py-8 bg-[#495872]">
+        <div className="max-w-2xl mx-auto rounded-2xl shadow-lg p-6 flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#d3e3fa] mb-2 text-center tracking-tight drop-shadow-lg">
             הארגון שלנו
           </h2>
+          <p className="text-base md:text-lg text-blue-200 mb-6 text-center font-medium">
+            המבנה הארגוני של משפחת וייסמן
+          </p>
           <div className="flex flex-col md:flex-row gap-6 w-full justify-center items-center">
             {organization.map((member) => (
               <div key={member.id} className="flex flex-col items-center bg-blue-50 rounded-2xl p-4 shadow w-48">
@@ -131,11 +144,14 @@ export default function Home() {
       </section>
 
       {/* Company Showcase */}
-      <section className="w-full mt-6">
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
-          <h2 className={sectionHeader}>
+      <section className="w-full mt-6 py-8">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-2 text-center tracking-tight drop-shadow-lg">
             המלצות
           </h2>
+          <p className="text-base md:text-lg text-blue-600 mb-6 text-center font-medium">
+            מה אומרים עלינו
+          </p>
           <Recommends />
         </div>
       </section>

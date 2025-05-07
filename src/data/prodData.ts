@@ -10,7 +10,7 @@ export const products = [
     name: "אלה",
     description:
       "החיוך, האנרגיה, והשובבות. אלה היא לב פועם עם נוכחות שממלאת את החדר.",
-    image: "/images/products/placeholder.png",
+    image: "/images/products/ella.png",
     tag: "כוכבת",
   },
   {
@@ -28,25 +28,25 @@ export const products = [
     tag: "אור",
   },
   {
-    name: "כבל USB חד־פעמי",
+    name: "כרטיס דנטלי",
     description:
-      "מוצר מהפכני: מתחבר פעם אחת בלבד ואז נעלם לנצח. פתרון מושלם למי שלא רוצה שיחטטו בקבצים שלו.",
-    image: "/images/products/placeholder.png",
+      "כרטיס פלא שמחליף קיסם כשאין אחד בסביבה. לא מנקה כלום, אבל תראה עסוק — ואף אחד לא ישפוט אותך.",
+    image: "/images/products/dental.png",
     tag: "פטנט אבא",
   },
   {
-    name: "כרית לחשיבה עמוקה",
+    name: "יום אחד היה לילה",
     description:
-      "פיתוח בלעדי: כרית שמזהה הרהורים כבדים ויוצרת סביבך שקט מוחלט. עובד במיוחד בשנ״צ.",
-    image: "/images/products/placeholder.png",
-    tag: "שינה פילוסופית",
+      "ספר מדהים ומרתק בן עמוד אחד בלבד. יצירת פאר של אמיר שמצליחה לרגש, לטלטל ולגמור בדיוק כשאתה נכנס לעניינים.",
+    image: "/images/products/oneday.png",
+    tag: "ספרות אינטנסיבית",
   },
   {
-    name: "מחשבון אינטואיטיבי",
+    name: "Shockobananen: The Legend Begins",
     description:
-      "מחשבון שלא באמת מחשב – פשוט מנחש את התוצאה לפי התחושה של אבא. מדויק להפליא (לפעמים).",
-    image: "/images/products/placeholder.png",
-    tag: "הנדסה יצירתית",
+      "הפקת ענק של לני ריפנשטאהל ואמיר – חטיף דרמה שאין שני לו. קקאו, בננה, ורגש טהור.\n\n🎬 Auf Deutsch: Ein Meisterwerk des modernen Snacks. Kakao, Banane und eine Geschichte, die das Herz berührt.",
+    image: "/images/products/shocko.png",
+    tag: "קולנוע נשנושי",
   },
   {
     name: "ערכת בדיחות אבא למתקדמים",
@@ -54,5 +54,5 @@ export const products = [
       "כוללת 72 בדיחות שאף אחד לא ביקש לשמוע, עם הוראות שימוש למצבים מביכים במיוחד.",
     image: "/images/products/placeholder.png",
     tag: "קרינג׳ יוקרתי",
-  }
+  },
 ];

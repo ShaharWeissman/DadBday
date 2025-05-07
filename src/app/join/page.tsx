@@ -4,6 +4,15 @@ import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { sections, Field, CheckboxGroup as CG } from "@/data/joinFormData";
 
+type FloatingText = {
+  id: number;
+  x: number;
+  y: number;
+  scale: number;
+  rotation: number;
+  delay: number;
+};
+
 type FormValues = {
   firstName: string;
   lastName: string;
@@ -61,6 +70,20 @@ function Modal({
 
 export default function Join() {
   const [modalSentence, setModalSentence] = useState<string | null>(null);
+  const [floatingTexts, setFloatingTexts] = useState<FloatingText[]>();
+
+  useEffect(() => {
+    // Create 8 floating texts with random positions
+    const texts = Array.from({ length: 8 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 80 + 10, // 10-90%
+      y: Math.random() * 80 + 10, // 10-90%
+      scale: Math.random() * 0.5 + 0.5, // 0.5-1
+      rotation: Math.random() * 30 - 15, // -15 to 15 degrees
+      delay: Math.random() * 12 // 0-12s delay
+    }));
+    setFloatingTexts(texts);
+  }, []);
   const { register, handleSubmit, formState } = useForm<FormValues>({
     defaultValues: {
       relation: [],
@@ -78,25 +101,48 @@ export default function Join() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-xl mt-16 bg-white p-8 shadow-lg rounded-lg">
-        <h2 className="text-center text-3xl font-extrabold text-gray-900">
-          🧠 טופס כניסה מאובטח לחגיגות יום הולדת 70
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          (מאושר על ידי מערכת ההצפנה הלאומית של אבא)
-        </p>
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 font-heebo relative overflow-hidden">
+      {/* Floating Background Texts */}
+      {floatingTexts?.map((text) => (
+        <div
+          key={text.id}
+          className="absolute pointer-events-none select-none animate-float-random"
+          style={{
+            left: `${text.x}%`,
+            top: `${text.y}%`,
+            transform: `scale(${text.scale}) rotate(${text.rotation}deg)`,
+            opacity: 0.07,
+            zIndex: 0,
+            ['--scale' as string]: text.scale,
+            ['--rotation' as string]: `${text.rotation}deg`,
+            ['--delay' as string]: text.delay,
+          }}>
+          <p className="text-4xl md:text-6xl font-black text-blue-600 whitespace-nowrap">
+            הצטרפו למשפחה
+          </p>
+        </div>
+      ))}
+      <div className="mx-auto w-full max-w-5xl mt-12 bg-white/90 p-6 shadow-xl rounded-2xl border-2 border-blue-200 backdrop-blur-sm">
+        <div className="text-center space-y-2 mb-8">
+          <h2 className="text-3xl font-extrabold text-gray-900">
+            🧠 טופס כניסה מאובטח לחגיגות יום הולדת 70
+          </h2>
+          <p className="text-sm text-gray-600">
+            (מאושר על ידי מערכת ההצפנה הלאומית של אבא)
+          </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-8">
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
           {sections.map((section) => (
-            <section key={section.title} className="space-y-6">
+            <section key={section.title} className="space-y-3">
               <h3 className="text-xl font-semibold text-gray-800">
                 {section.title}
               </h3>
 
               {/* text fields */}
               {section.fields && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {section.fields.map((f: Field) => (
                     <div key={f.id}>
                       <label
@@ -120,18 +166,18 @@ export default function Join() {
 
               {/* checkbox groups */}
               {section.checkboxes.map((group: CG) => (
-                <fieldset key={group.name} className="space-y-4">
+                <fieldset key={group.name} className="space-y-2">
                   <legend className="text-sm font-medium text-gray-700">
                     {group.label}
                   </legend>
-                  <div className="mt-4 space-y-2">
+                  <div className="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-1">
                     {group.options.map((opt) => (
-                      <label key={opt} className="flex items-center space-x-2">
+                      <label key={opt} className="flex items-center space-x-2 text-sm">
                         <input
                           type="checkbox"
                           value={opt}
                           {...register(group.name as keyof FormValues)}
-                          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          className="h-3.5 w-3.5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                         />
                         <span className="text-gray-700">{opt}</span>
                       </label>
@@ -143,7 +189,7 @@ export default function Join() {
           ))}
 
           {/* free-text */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-xl font-semibold text-gray-800">
               💌 מילות אהבה או קוד
             </h3>
@@ -154,7 +200,7 @@ export default function Join() {
             </label>
             <textarea
               id="message"
-              rows={4}
+              rows={3}
               {...register("message")}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
@@ -163,7 +209,7 @@ export default function Join() {
           <button
             type="submit"
             disabled={formState.isSubmitting}
-            className="w-full py-4 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition">
+            className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg hover:from-blue-700 hover:to-indigo-700 transition duration-300 mt-4">
             ✅ [ שלח את הטופס | כניסה למערכת מאושרת 🎉 ]
           </button>
         </form>

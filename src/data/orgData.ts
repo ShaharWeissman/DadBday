@@ -48,9 +48,9 @@ export const orgTreeData: OrgMember[] = [
             name: "איילת",
             role: "מנהלת הקריאייטיב הראשית",
             level: 3,
-            imageSrc: "/images/products/ayelet.png",
+            imageSrc: "/images/orgTree/lul.jpg",
             imageAlt: "איילת",
-            gallery: ["/images/products/ayelet1.png", "/images/products/ayelet2.png", "/images/products/ayelet3.png"],
+            gallery: ["/images/orgTree/lul.jpg", "/images/products/ayelet2.png", "/images/products/ayelet3.png"],
             parentId: 3,
             children: [
               {

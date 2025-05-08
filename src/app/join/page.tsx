@@ -27,6 +27,8 @@ type FormValues = {
 
 const fatherSentences = [
   "ALL ANGELES COMES.",
+  "בפורום ? תתפלאי",
+  "אוקלאונה גולג",
   "אוסס ידה חטבילי ג'ונקלילי סירומני או מז'נה או מז'נה ?.",
   "יום אחד היה לילה!",
   "נשאלת השאלהההההה - אין כניסה",
@@ -101,7 +103,7 @@ export default function Join() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 font-heebo relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-24 px-4 sm:px-6 lg:px-8 font-heebo relative overflow-hidden">
       {/* Floating Background Texts */}
       {floatingTexts?.map((text) => (
         <div
@@ -122,18 +124,30 @@ export default function Join() {
           </p>
         </div>
       ))}
-      <div className="mx-auto w-full max-w-5xl mt-12 bg-white/90 p-6 shadow-xl rounded-2xl border-2 border-blue-200 backdrop-blur-sm">
-        <div className="text-center space-y-2 mb-8">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-4 relative inline-block">
+            <span className="relative z-10">הצטרפו למשפחה</span>
+            <div className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-400/30 -skew-y-1 z-0"></div>
+          </h1>
+          <p className="text-md md:text-xl text-gray-600 max-w-3xl mx-auto">
+            טופס הצטרפות לארגון המשפחתי שלנו
+          </p>
+        </div>
+      </div>
+      
+      <div className="mx-auto w-full max-w-5xl bg-white/90 p-4 shadow-xl rounded-2xl border-2 border-blue-200 backdrop-blur-sm">
+        <div className="text-center space-y-1 mb-4">
           <h2 className="text-3xl font-extrabold text-gray-900">
             🧠 טופס כניסה מאובטח לחגיגות יום הולדת 70
           </h2>
           <p className="text-sm text-gray-600">
             (מאושר על ידי מערכת ההצפנה הלאומית של אבא)
           </p>
-
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-3">
           {sections.map((section) => (
             <section key={section.title} className="space-y-3">
               <h3 className="text-xl font-semibold text-gray-800">

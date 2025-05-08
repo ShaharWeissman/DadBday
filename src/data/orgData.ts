@@ -3,6 +3,7 @@ export interface OrgMember {
   id: number;
   name: string;
   role: string;
+  roleEn?: string;
   level: number;
   parentId: number | null;
   children?: OrgMember[];
@@ -17,10 +18,11 @@ export const orgTreeData: OrgMember[] = [
     id: 0,
     name: "דוד",
     role: "מייסד המשפחה",
+    roleEn: "Founder",
     level: 0,
-    imageSrc: "/images/orgTree/david.jpg",
+    imageSrc: "/images/orgTree/davidi.jpg",
     imageAlt: "דוד",
-    gallery: ["/images/orgTree/david1.jpg", "/images/orgTree/david2.jpg"],
+    gallery: ["/images/orgTree/davidi.jpg", "/images/orgTree/david2.jpg"],
     parentId: null,
     children: []
   },
@@ -28,6 +30,7 @@ export const orgTreeData: OrgMember[] = [
     id: 1,
     name: "אראלה",
     role: "מייסדת המשפחה",
+    roleEn: "Founder",
     level: 0,
     imageSrc: "/images/orgTree/reli.jpg",
     imageAlt: "אראלה",
@@ -37,47 +40,41 @@ export const orgTreeData: OrgMember[] = [
       {
         id: 2,
         name: "אמיר",
-        role: "מנכ''ל WISEMAN המאוחדים",
+        role: "מנכ\"ל weissman בע\"מ",
+        roleEn: "CEO of Wiseman Corp",
         level: 2,
-        imageSrc: "/images/products/amir.png",
+        imageSrc: "/images/orgTree/amiri.jpg",
         imageAlt: "אמיר",
-        gallery: ["/images/products/amir1.png", "/images/products/amir2.png", "/images/products/amir3.png"],
+        gallery: ["/images/orgTree/amiri.jpg"],
         parentId: 1,
         children: [
           {
-            id: 3,
-            name: "מישי",
-            role: "מייסדת שותפה בתחום הנשנושים",
-            level: 3,
-            imageSrc: "/images/products/mishi.png",
-            imageAlt: "מישי",
-            gallery: ["/images/products/mishi1.png", "/images/products/mishi2.png"],
-            parentId: 2
-          },
-          {
             id: 4,
             name: "ורדה",
-            role: "מנהלת האווירה הראשית",
+            role: "סגנית מנכ\"ל ומנהלת האווירה הראשית",
+            roleEn: "Vice CEO and Chief Vibes Officer",
             level: 3,
-            imageSrc: "/images/orgTree/varda.jpg",
+            imageSrc: "/images/orgTree/ima.jpg",
             imageAlt: "ורדה",
-            gallery: ["/images/orgTree/varda.jpg", "/images/products/varda2.png"],
+            gallery: ["/images/orgTree/ima.jpg"],
             parentId: 2,
             children: [
               {
                 id: 5,
                 name: "איילת",
-                role: "מנהלת הקריאייטיב הראשית",
+                role: "מנהלת תפעול והעברות מגורים",
+                roleEn: "Chief of Operations and Relocation",
                 level: 4,
-                imageSrc: "/images/orgTree/lul.jpg",
+                imageSrc: "/images/orgTree/lulu.jpg",
                 imageAlt: "איילת",
-                gallery: ["/images/orgTree/lul.jpg", "/images/products/ayelet2.png", "/images/products/ayelet3.png"],
+                gallery: ["/images/orgTree/lulu.jpg", "/images/products/ayelet2.png", "/images/products/ayelet3.png"],
                 parentId: 4,
                 children: [
                   {
                     id: 6,
                     name: "אילן",
                     role: "מהנדס הפלאים הזוטר",
+                    roleEn: "Junior Wonder Engineer",
                     level: 5,
                     imageSrc: "/images/products/ilan.png",
                     imageAlt: "אילן",
@@ -88,6 +85,7 @@ export const orgTreeData: OrgMember[] = [
                     id: 7,
                     name: "אלה",
                     role: "ראש מחלקת הצחוקים",
+                    roleEn: "Head of Giggles",
                     level: 5,
                     imageSrc: "/images/products/ella.png",
                     imageAlt: "אלה",
@@ -99,17 +97,19 @@ export const orgTreeData: OrgMember[] = [
               {
                 id: 8,
                 name: "שחר",
-                role: "מנהל אסטרטגיית השטויות",
+                role: "מנהל טכנולוגיה ויצירתיות",
+                roleEn: "Chief of Technology and Creativity",
                 level: 4,
-                imageSrc: "/images/products/shahar.png",
+                imageSrc: "/images/orgTree/shahar.jpg",
                 imageAlt: "שחר",
-                gallery: ["/images/products/shahar1.png", "/images/products/shahar2.png", "/images/products/shahar3.png"],
+                gallery: ["/images/orgTree/shahar.jpg"],
                 parentId: 4,
                 children: [
                   {
                     id: 9,
                     name: "אמה",
                     role: "מנהלת החמידות הראשית",
+                    roleEn: "Chief Cuteness Officer",
                     level: 5,
                     imageSrc: "/images/products/emma.png",
                     imageAlt: "אמה",
@@ -121,16 +121,28 @@ export const orgTreeData: OrgMember[] = [
               {
                 id: 10,
                 name: "טל",
-                role: "מנהל אחזקה וכושר",
+                role: "אחראית תשומת לב",
+                roleEn: "Chief of Attention",
                 level: 4,
-                imageSrc: "/images/products/tal.png",
+                imageSrc: "/images/orgTree/tal.jpg",
                 imageAlt: "טל",
-                gallery: ["/images/products/tal1.png", "/images/products/tal2.png", "/images/products/tal3.png"],
+                gallery: ["/images/orgTree/tal.jpg"],
                 parentId: 4
               }
             ]
           }
         ]
+      },
+      {
+        id: 3,
+        name: "מיכי",
+        role: "אחראית האחים",
+        roleEn: "Head of Siblings",
+        level: 2,
+        imageSrc: "/images/orgTree/michi.jpg",
+        imageAlt: "מיכי",
+        gallery: ["/images/orgTree/michi.jpg"],
+        parentId: 1
       }
     ]
   }

@@ -37,7 +37,7 @@ export const orgTreeData: OrgMember[] = [
       {
         id: 2,
         name: "אמיר",
-        role: "מנכ'ל האחים המאוחדים",
+        role: "מנכ''ל WISEMAN המאוחדים",
         level: 2,
         imageSrc: "/images/products/amir.png",
         imageAlt: "אמיר",
@@ -59,9 +59,9 @@ export const orgTreeData: OrgMember[] = [
             name: "ורדה",
             role: "מנהלת האווירה הראשית",
             level: 3,
-            imageSrc: "/images/products/varda.png",
+            imageSrc: "/images/orgTree/varda.jpg",
             imageAlt: "ורדה",
-            gallery: ["/images/products/varda1.png", "/images/products/varda2.png"],
+            gallery: ["/images/orgTree/varda.jpg", "/images/products/varda2.png"],
             parentId: 2,
             children: [
               {

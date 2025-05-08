@@ -52,7 +52,7 @@ export const products = [
     name: "ערכת בדיחות אבא למתקדמים",
     description:
       "כוללת 72 בדיחות שאף אחד לא ביקש לשמוע, עם הוראות שימוש למצבים מביכים במיוחד.",
-    image: "/images/products/placeholder.png",
+    image: "/images/products/blind.jpg",
     tag: "קרינג׳ יוקרתי",
   },
 ];

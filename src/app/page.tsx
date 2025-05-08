@@ -10,7 +10,7 @@ import Carousel from "@/app/components/carousel/Carousel";
 import Footer from "@/app/components/footer/Footer";
 import Recommends from "./components/recomends/Recommends";
 import dynamic from "next/dynamic";
-import { organization } from "@/data/orgData";
+import { orgTreeData } from "@/data/orgData";
 
 const ProductCards = dynamic(() => import("./components/products/ProductCards"), {
   ssr: false,
@@ -117,25 +117,25 @@ export default function Home() {
             המבנה הארגוני של משפחת וייסמן
           </p>
           <div className="flex flex-col md:flex-row gap-6 w-full justify-center items-center">
-            {organization.map((member) => (
+            {orgTreeData.slice(0, 3).map((member) => (
               <div key={member.id} className="flex flex-col items-center bg-blue-50 rounded-2xl p-4 shadow w-48">
                 <div className="w-16 h-16 rounded-full bg-blue-200 mb-2 flex items-center justify-center overflow-hidden">
                   {member.imageSrc ? (
                     <Image
                       src={member.imageSrc}
-                      alt={member.imageAlt}
+                      alt={member.imageAlt || member.name}
                       width={64}
                       height={64}
                       className="object-cover rounded-full"
                     />
                   ) : (
                     <span className="text-xl font-bold text-blue-800">
-                      {member.title.charAt(0)}
+                      {member.name.charAt(0)}
                     </span>
                   )}
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-blue-900 mb-1">{member.title}</h3>
-                <p className="text-sm md:text-base text-gray-600 text-center">{member.description}</p>
+                <h3 className="text-lg md:text-xl font-bold text-blue-900 mb-1">{member.name}</h3>
+                <p className="text-sm md:text-base text-gray-600 text-center">{member.role}</p>
               </div>
             ))}
           </div>

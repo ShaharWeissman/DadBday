@@ -1,6 +1,7 @@
 "use client";
 import { orgTreeData } from "@/data/orgData";
 import ProfilePlaceholder from "@/app/components/ui/ProfilePlaceholder";
+import Image from "next/image";
 
 interface OrgMember {
   id: number;
@@ -21,10 +22,12 @@ export default function Organization() {
       <div className="flex flex-col items-center p-4 bg-gray-800/90 rounded-lg shadow-xl w-48 transition-all hover:scale-105 hover:z-10 border border-blue-500/30 backdrop-blur-sm hover:shadow-blue-500/20 hover:shadow-2xl">
         <div className="w-24 h-24 mb-3 relative overflow-hidden rounded-full ring-2 ring-blue-400 ring-offset-2 ring-offset-gray-800/50">
           {member.imageSrc ? (
-            <img
+            <Image
               src={member.imageSrc}
               alt={member.imageAlt || member.name}
               className="w-full h-full object-cover"
+              width={96}
+              height={96}
             />
           ) : (
             <ProfilePlaceholder name={member.name} />
@@ -62,7 +65,7 @@ export default function Organization() {
   const renderChildren = (member: OrgMember, depth: number = 1) => {
     if (!member.children || member.children.length === 0) return null;
     
-    const maxDepth = 5; // Increased to ensure all levels are visible
+    // Depth is no longer limited
     const widthClass = depth === 1 ? "w-full" : "w-auto";
     const gapClass = depth === 1 ? "gap-8" : depth === 2 ? "gap-6" : "gap-4";
     

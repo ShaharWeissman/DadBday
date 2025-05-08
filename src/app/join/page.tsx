@@ -86,6 +86,7 @@ export default function Join() {
     }));
     setFloatingTexts(texts);
   }, []);
+  
   const { register, handleSubmit, formState } = useForm<FormValues>({
     defaultValues: {
       relation: [],
@@ -124,6 +125,7 @@ export default function Join() {
           </p>
         </div>
       ))}
+      
       {/* Header */}
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
@@ -224,7 +226,7 @@ export default function Join() {
             type="submit"
             disabled={formState.isSubmitting}
             className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg hover:from-blue-700 hover:to-indigo-700 transition duration-300 mt-4">
-            ✅ [ שלח את הטופס | כניסה למערכת מאושרת 🎉 ]
+            ✅ [ שלח את הטופס | כניסה למערכת מאושרת 🎉 ]
           </button>
         </form>
       </div>

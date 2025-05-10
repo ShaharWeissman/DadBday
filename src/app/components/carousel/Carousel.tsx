@@ -9,11 +9,11 @@ export default function Carousel() {
   const [current, setCurrent] = useState(0);
   const length = carouselImages.length;
 
-  // Auto‑rotate every 5s
+  // Auto‑rotate every 3s
   useEffect(() => {
     const id = setInterval(() => {
       setCurrent((prev) => (prev + 1) % length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(id);
   }, [length]);
 
@@ -28,7 +28,7 @@ export default function Carousel() {
         <button
           aria-label="Previous"
           onClick={() => setCurrent(prevIdx)}
-          className="absolute left-4 md:left-16 z-10 bg-white/80 hover:bg-blue-100 border border-blue-200 rounded-full shadow-lg w-12 h-12 flex items-center justify-center text-blue-700 text-2xl transition-all duration-200 cursor-pointer top-1/2 -translate-y-1/2"
+          className="absolute left-4 md:left-16 z-10 bg-white/80 hover:bg-blue-100 border border-blue-200 rounded-full shadow-lg w-12 h-12 flex items-center justify-center text-blue-700 text-2xl transition-all duration-150 cursor-pointer top-1/2 -translate-y-1/2"
         >
           ‹
         </button>
@@ -36,7 +36,7 @@ export default function Carousel() {
         <button
           aria-label="Next"
           onClick={() => setCurrent(nextIdx)}
-          className="absolute right-4 md:right-16 z-10 bg-white/80 hover:bg-blue-100 border border-blue-200 rounded-full shadow-lg w-12 h-12 flex items-center justify-center text-blue-700 text-2xl transition-all duration-200 cursor-pointer top-1/2 -translate-y-1/2"
+          className="absolute right-4 md:right-16 z-10 bg-white/80 hover:bg-blue-100 border border-blue-200 rounded-full shadow-lg w-12 h-12 flex items-center justify-center text-blue-700 text-2xl transition-all duration-150 cursor-pointer top-1/2 -translate-y-1/2"
         >
           ›
         </button>
@@ -84,7 +84,7 @@ export default function Carousel() {
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`h-3 w-3 rounded-full transition-all duration-300 cursor-pointer border-2 border-white shadow-sm ${
+            className={`h-3 w-3 rounded-full transition-all duration-200 cursor-pointer border-2 border-white shadow-sm ${
               idx === current ? "bg-blue-600 scale-125" : "bg-gray-300"
             }`}
           />
@@ -100,10 +100,10 @@ export default function Carousel() {
           100% { transform: translateX(0); opacity: 1; }
         }
         .animate-fade-in {
-          animation: fade-in 0.7s cubic-bezier(0.4,0,0.2,1);
+          animation: fade-in 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .animate-slide-in {
-          animation: slide-in 0.5s ease-out;
+          animation: slide-in 0.3s ease-out;
         }
       `}</style>
     </section>

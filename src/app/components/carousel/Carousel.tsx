@@ -22,7 +22,7 @@ export default function Carousel() {
   const nextIdx = (current + 1) % length;
 
   return (
-    <section className="py-16 w-full bg-[#495872] min-h-[500px] flex flex-col items-center">
+    <section className="py-8 w-full bg-[#495872] min-h-[400px] flex flex-col items-center">
       <div className="relative w-full flex justify-center items-center">
         {/* Prev Button */}
         <button
@@ -41,7 +41,7 @@ export default function Carousel() {
           ›
         </button>
         {/* Carousel Card */}
-        <div className="relative flex flex-row items-center justify-center w-full max-w-6xl">
+        <div className="relative flex flex-row items-center justify-center w-full max-w-7xl">
           {/* Previous Slide (peek, blurred) */}
           <div className="hidden md:flex flex-col items-center justify-center w-[150px] h-[120px] mr-[-40px] z-0 opacity-60 blur-[2px] rounded-xl overflow-hidden bg-[#e5eefa] shadow-lg transition-all duration-500">
             <Image
@@ -54,14 +54,15 @@ export default function Carousel() {
           </div>
           {/* Main Slide */}
           <div className="flex-1 flex items-center justify-center min-w-0">
-            <div className="mx-auto w-full max-w-[900px] aspect-[16/9] bg-[#e5eefa] rounded-2xl shadow-2xl border-4 border-[#b0c7e6] flex items-center justify-center overflow-hidden relative">
+            <div className="mx-auto w-full max-w-[1100px] aspect-[16/9] bg-[#e5eefa] rounded-2xl shadow-2xl border-4 border-[#b0c7e6] flex items-center justify-center overflow-hidden relative transition-all duration-500 transform">
               <Image
                 src={carouselImages[current]}
                 alt={`Slide ${current + 1}`}
                 fill
-                className="object-contain"
+                className="object-contain animate-slide-in"
                 style={{ objectFit: 'contain', background: '#e5eefa' }}
                 priority
+                key={current} /* Key helps React recognize this as a new element when current changes */
               />
             </div>
           </div>
@@ -78,7 +79,7 @@ export default function Carousel() {
         </div>
       </div>
       {/* Indicator Dots */}
-      <div className="mt-8 flex justify-center space-x-3">
+      <div className="mt-4 flex justify-center space-x-3">
         {carouselImages.map((_, idx) => (
           <button
             key={idx}
@@ -91,11 +92,18 @@ export default function Carousel() {
       </div>
       <style jsx global>{`
         @keyframes fade-in {
-          0% { opacity: 0; transform: scale(0.97); }
-          100% { opacity: 1; transform: scale(1); }
+          0% { opacity: 0; transform: scale(0.97) translateX(5%); }
+          100% { opacity: 1; transform: scale(1) translateX(0); }
+        }
+        @keyframes slide-in {
+          0% { transform: translateX(100%); opacity: 0; }
+          100% { transform: translateX(0); opacity: 1; }
         }
         .animate-fade-in {
           animation: fade-in 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .animate-slide-in {
+          animation: slide-in 0.5s ease-out;
         }
       `}</style>
     </section>

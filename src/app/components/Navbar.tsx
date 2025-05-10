@@ -50,7 +50,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-4">
           <Image
-            src="/images/hero/logo.jpg"
+            src="/images/hero/logo-main.jpg"
             width={120}
             height={60}
             alt="Amir70 Logo"

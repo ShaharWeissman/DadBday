@@ -10,57 +10,8 @@ interface EraTimelineProps {
 }
 
 export default function EraTimeline({ current, setCurrent, leftRightNav = true }: EraTimelineProps) {
-  const [dragging, setDragging] = useState(false);
   const [modal, setModal] = useState<{ image: string; text: string } | null>(null);
-  const barRef = useRef<HTMLDivElement>(null);
   const eras = timelineData;
-
-  // Drag logic
-  const handleDrag = (clientX: number) => {
-    const bar = barRef.current;
-    if (!bar) return;
-    const rect = bar.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    const percent = x / rect.width;
-    const idx = Math.round(percent * (eras.length - 1));
-    setCurrent(idx);
-  };
-
-  const handleStart = (e: React.MouseEvent | React.TouchEvent) => {
-    setDragging(true);
-    document.body.style.cursor = 'grabbing';
-    let clientX: number;
-    if ('touches' in e) {
-      clientX = e.touches[0].clientX;
-      window.addEventListener('touchmove', onMove);
-      window.addEventListener('touchend', onUp);
-    } else {
-      clientX = e.clientX;
-      window.addEventListener('mousemove', onMove);
-      window.addEventListener('mouseup', onUp);
-    }
-    handleDrag(clientX);
-  };
-
-  const onMove = (e: MouseEvent | TouchEvent) => {
-    if (!dragging) return;
-    let clientX: number;
-    if (e instanceof TouchEvent) {
-      clientX = e.touches[0].clientX;
-    } else {
-      clientX = e.clientX;
-    }
-    handleDrag(clientX);
-  };
-
-  const onUp = () => {
-    setDragging(false);
-    document.body.style.cursor = '';
-    window.removeEventListener('mousemove', onMove);
-    window.removeEventListener('mouseup', onUp);
-    window.removeEventListener('touchmove', onMove);
-    window.removeEventListener('touchend', onUp);
-  };
 
   // Defensive: clamp current to valid range
   const safeCurrent = Math.max(0, Math.min(current, eras.length - 1));
@@ -84,46 +35,29 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
             &#8592;
           </button>
         )}
-        <div className="flex-1 relative flex flex-col items-center w-full">
-          <div ref={barRef} className="relative w-full flex items-center">
-            <div className="absolute left-0 right-0 top-1/2 h-2 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200 rounded-full -translate-y-1/2 z-0" />
-            {/* Draggable cursor */}
-            <div
-              className="absolute z-20 top-1/2 -translate-y-1/2 cursor-pointer"
-              style={{ left: `calc(${(safeCurrent / (eras.length - 1)) * 100}% - 1.25rem)` }}
-              onMouseDown={handleStart}
-              onTouchStart={handleStart}
-            >
+        {/* Era Selection Buttons */}
+        <div className="w-full flex flex-wrap justify-center gap-4 md:gap-8 mb-6">
+          {eras.map((eraItem, idx) => (
+            <div key={idx} className="flex flex-col items-center">
               <button
-                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-700 border-4 border-white shadow-lg flex items-center justify-center cursor-pointer transition-transform duration-200 active:scale-95"
-                style={{ touchAction: 'none', cursor: 'pointer' }}
-                aria-label="הזז את הסמן בזמן"
+                className={`w-16 h-16 md:w-24 md:h-24 rounded-full flex items-center justify-center shadow-md transition-all duration-300 ${
+                  idx === safeCurrent 
+                    ? 'bg-blue-600 text-white scale-110 shadow-lg border-4 border-white' 
+                    : 'bg-white text-blue-800 hover:bg-blue-100'
+                }`}
+                onClick={() => setCurrent(idx)}
+                aria-label={eraItem.title}
               >
-                <span className="block w-4 h-4 bg-white rounded-full"></span>
+                <span className="text-lg md:text-xl font-bold">{idx + 1}</span>
               </button>
+              <span className="mt-2 text-sm md:text-base font-medium text-blue-900 text-center">
+                {eraItem.title}
+              </span>
+              <span className="text-xs md:text-sm text-blue-600">
+                {eraItem.titleEn}
+              </span>
             </div>
-            {/* Era ticks as sets */}
-            <div className="flex w-full justify-between z-10">
-              {eras.map((era, idx) => (
-                <button
-                  key={era.yearRange}
-                  className={`relative flex flex-col items-center focus:outline-none group cursor-pointer`}
-                  onClick={() => setCurrent(idx)}
-                  aria-label={era.yearRange}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <span
-                    className={`w-5 h-5 flex items-center justify-center rounded-full border-2 transition-all duration-300 shadow-md
-                      ${idx === safeCurrent ? 'bg-blue-600 border-blue-900 scale-110' : 'bg-white border-blue-300'}
-                      group-hover:scale-105`}
-                  >
-                    <span className={`block w-2.5 h-2.5 rounded-full ${idx === safeCurrent ? 'bg-white' : 'bg-blue-400'}`} />
-                  </span>
-                  <span className={`mt-2 text-sm md:text-base font-bold text-blue-900 ${idx === safeCurrent ? 'font-extrabold underline' : ''}`}>{era.yearRange}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
         {/* Right Navigation Button */}
         {leftRightNav && (
@@ -138,9 +72,9 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
           </button>
         )}
       </div>
-      {/* Era content */}
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-2 md:p-8 flex flex-col items-center mobile-card-slim">
-        <h3 className="text-xl md:text-4xl font-bold text-blue-900 mb-1 md:mb-2 animate-fade-in text-center drop-shadow-lg mobile-text-sm">
+      {/* Era Description */}
+      <div className="w-full max-w-5xl bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg p-4 md:p-6 mb-6 md:mb-10">
+        <h3 className="text-xl md:text-3xl font-bold text-blue-800 text-center mb-2 md:mb-4">
           {era.title}
         </h3>
         <p className="text-base md:text-xl text-blue-700 text-center font-medium animate-fade-in mb-2 mobile-text-sm">

@@ -57,12 +57,12 @@ const recommendations = [
   {
     name: "Spotify",
     quote: "Amir's playlist: 100% hits, 0% skips.",
-    logo: "https://1000logos.net/wp-content/uploads/2017/08/Spotify-logo.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png",
   },
   {
     name: "Tesla",
     quote: "If Amir was a car, he'd run on pure inspiration.",
-    logo: "https://1000logos.net/wp-content/uploads/2018/02/Tesla-Logo.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png",
   },
   {
     name: "Intel",

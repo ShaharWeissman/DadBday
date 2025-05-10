@@ -13,7 +13,7 @@ export default function Carousel() {
   useEffect(() => {
     const id = setInterval(() => {
       setCurrent((prev) => (prev + 1) % length);
-    }, 3000);
+    }, 6000);
     return () => clearInterval(id);
   }, [length]);
 

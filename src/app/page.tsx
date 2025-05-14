@@ -29,7 +29,7 @@ function OrgCarousel() {
   
   // Get all members from the tree (flatten the hierarchy)
   const getAllMembers = (members: typeof orgTreeData = orgTreeData): typeof orgTreeData => {
-    let allMembers: typeof orgTreeData = [];
+    const allMembers: typeof orgTreeData = [];
     
     const traverse = (members: typeof orgTreeData) => {
       for (const member of members) {

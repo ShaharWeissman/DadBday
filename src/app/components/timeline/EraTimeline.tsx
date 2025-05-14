@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import timelineData from "@/data/timelineData";
 
 interface EraTimelineProps {
@@ -134,9 +134,9 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
         
         <p className="text-lg text-gray-700">{era.description}</p>
       </div>
-      {/* Unified grid layout with color themes for each era */}
-      <div className="w-full max-w-7xl mx-auto px-2 md:px-4">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+      {/* Unified grid layout with color themes for each era - no spacing */}
+      <div className="w-full max-w-7xl mx-auto px-0">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-0 items-start">
           {era.cards.map((card, idx) => {
             // Common layouts for all eras
             const positions = [
@@ -172,7 +172,7 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
             
             return (
               <div key={idx} className={`${position}`}>
-                <div className={`rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 ${themeColors.bg} border ${themeColors.border}`}>
+                <div className={`overflow-hidden transition-all duration-300 ${themeColors.bg}`}>
                   {/* Image on top */}
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <button

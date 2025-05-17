@@ -85,12 +85,12 @@ const recommendations = [
     logo: "https://1000logos.net/wp-content/uploads/2017/06/Disney-Logo.png",
   },
   {
-    name: "חברה כלשהי",
-    quote: "במבחן גיוס הכריזמה – אמיר היה סיירת.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/3/3c/IDF_Logo.svg",
+    name: "Mobileye",
+    quote: "אמיר רואה את הדרך קדימה בכל סיטואציה.",
+    logo:"https://static.mobileye.com/website/corporate/img/homepage2022/new_logo.svg"
   },
   {
-    name: "עוד חברה",
+    name: "e-sign ",
     quote: "אמיר הוא כמו מטוס קרב – חד, מהיר, ותמיד מגיע גבוה.",
     logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Israeli_Air_Force_emblem.png",
   },

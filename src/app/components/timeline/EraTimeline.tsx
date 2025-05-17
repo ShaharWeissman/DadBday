@@ -26,11 +26,10 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
         {/* Left Navigation Button */}
         {leftRightNav && (
           <button
-            className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 bg-white border-2 border-blue-300 rounded-full w-9 h-9 md:w-12 md:h-12 shadow-lg flex items-center justify-center text-blue-700 text-2xl md:text-3xl font-bold z-30 hover:bg-blue-50 transition disabled:opacity-30 cursor-pointer mobile-hide"
+            className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 bg-white border-2 border-blue-300 rounded-full w-9 h-9 md:w-12 md:h-12 shadow-lg flex items-center justify-center text-blue-700 text-2xl md:text-3xl font-bold z-30 hover:bg-blue-50 hover:scale-110 transition disabled:opacity-30 cursor-pointer mobile-hide"
             onClick={() => setCurrent(Math.max(0, safeCurrent - 1))}
             disabled={safeCurrent === 0}
             aria-label="הקודם"
-            style={{ cursor: 'pointer' }}
           >
             &#8592;
           </button>
@@ -67,7 +66,7 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
             return (
               <div key={idx} className="flex flex-col items-center">
                 <button
-                  className={`w-16 h-16 md:w-24 md:h-24 rounded-full flex flex-col items-center justify-center shadow-md transition-all duration-300 text-white ${
+                  className={`w-16 h-16 md:w-24 md:h-24 rounded-full flex flex-col items-center justify-center shadow-md transition-all duration-300 text-white cursor-pointer hover:scale-105 ${
                     idx === safeCurrent 
                       ? `${buttonStyle} scale-110 shadow-lg border-4 ${activeStyle}` 
                       : `${buttonStyle}`
@@ -91,11 +90,10 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
         {/* Right Navigation Button */}
         {leftRightNav && (
           <button
-            className="absolute -right-16 top-1/2 -translate-y-1/2 bg-white border-2 border-blue-300 rounded-full w-12 h-12 shadow-lg flex items-center justify-center text-blue-700 text-3xl font-bold z-30 hover:bg-blue-50 transition disabled:opacity-30 cursor-pointer"
+            className="absolute -right-4 md:-right-16 top-1/2 -translate-y-1/2 bg-white border-2 border-blue-300 rounded-full w-9 h-9 md:w-12 md:h-12 shadow-lg flex items-center justify-center text-blue-700 text-2xl md:text-3xl font-bold z-30 hover:bg-blue-50 hover:scale-110 transition disabled:opacity-30 cursor-pointer mobile-hide"
             onClick={() => setCurrent(Math.min(eras.length - 1, safeCurrent + 1))}
             disabled={safeCurrent === eras.length - 1}
             aria-label="הבא"
-            style={{ cursor: 'pointer' }}
           >
             &#8594;
           </button>
@@ -132,22 +130,12 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
           'bg-rose-100 text-rose-800'
         }`}>{era.yearRange}</div>
         
-        <p className="text-lg text-gray-700">{era.description}</p>
+        <p className="text-lg text-gray-700 text-right px-4 leading-relaxed" style={{ direction: 'rtl' }}>{era.description}</p>
       </div>
-      {/* Unified grid layout with color themes for each era - no spacing */}
-      <div className="w-full max-w-7xl mx-auto px-0">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-0 items-start">
+      {/* Compact grid layout with minimal gaps */}
+      <div className="w-full max-w-7xl mx-auto px-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 md:gap-3">
           {era.cards.map((card, idx) => {
-            // Common layouts for all eras
-            const positions = [
-              "md:col-span-6", // Half width
-              "md:col-span-3", // Quarter width
-              "md:col-span-3", // Quarter width
-              "md:col-span-4", // Third width
-              "md:col-span-4", // Third width
-              "md:col-span-4"  // Third width
-            ];
-            
             // Get current era's theme colors
             const themeColors = {
               bg: safeCurrent === 0 ? 'bg-indigo-50' :
@@ -168,34 +156,46 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
                       'shadow-rose-100'
             };
             
-            const position = positions[idx % positions.length];
+            // Make cards more uniform in size with some variation for visual interest
+            // First card in each row gets slightly more emphasis
+            const isFeatured = idx === 0;
+            const featuredClass = isFeatured ? 
+              'sm:col-span-2' : '';
             
             return (
-              <div key={idx} className={`${position}`}>
-                <div className={`overflow-hidden transition-all duration-300 ${themeColors.bg}`}>
-                  {/* Image on top */}
-                  <div className="relative aspect-[4/3] overflow-hidden">
+              <div 
+                key={idx} 
+                className={`${featuredClass} flex flex-col transition-transform duration-300 hover:scale-[1.02]`}
+              >
+                <div className={`overflow-hidden rounded-lg border ${themeColors.border} shadow-md flex flex-col ${themeColors.bg}`}>
+                  {/* Image with consistent aspect ratio */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-white flex items-center justify-center">
                     <button
-                      className="w-full h-full relative focus:outline-none"
+                      className="w-full h-full relative focus:outline-none flex items-center justify-center cursor-pointer hover:opacity-95"
                       onClick={() => setModal(card)}
                       aria-label="הצג תמונה מוגדלת"
                       style={{ cursor: 'zoom-in' }}
                     >
-                      <Image
-                        src={card.image}
-                        alt={card.text}
-                        fill
-                        className="object-contain"
-                        style={{ objectFit: 'contain' }}
-                        sizes="(max-width: 1200px) 100vw, 400px"
-                        priority={idx === 0}
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={card.image}
+                          alt={card.text}
+                          fill
+                          className="hover:scale-105 transition-transform duration-700"
+                          style={{ objectFit: 'contain', objectPosition: 'center' }}
+                          sizes={isFeatured ? 
+                            "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" : 
+                            "(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 25vw"}
+                          priority={idx < 2}
+                          quality={90}
+                        />
+                      </div>
                     </button>
                   </div>
                   
-                  {/* Text below image - right aligned for Hebrew */}
-                  <div className="p-3">
-                    <p className={`text-sm md:text-base leading-tight ${themeColors.text} text-right`}>
+                  {/* Text below image - right aligned for Hebrew with improved styling */}
+                  <div className="p-3 pb-2">
+                    <p className={`text-sm md:text-base leading-relaxed ${themeColors.text} text-right font-medium px-1 m-0`} style={{ direction: 'rtl' }}>
                       {card.text}
                     </p>
                   </div>
@@ -227,13 +227,14 @@ export default function EraTimeline({ current, setCurrent, leftRightNav = true }
                 src={modal.image}
                 alt={modal.text}
                 fill
-                className="object-contain rounded-2xl"
-                style={{ objectFit: 'contain' }}
+                className="object-contain rounded-2xl w-full h-full"
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
                 sizes="(max-width: 1200px) 100vw, 600px"
                 priority
+                quality={100}
               />
             </div>
-            <div className="text-base md:text-xl text-blue-900 font-semibold text-center mt-1 md:mt-2 mobile-text-sm">
+            <div className="text-base md:text-xl text-blue-900 font-semibold text-center mt-1 md:mt-2 mobile-text-sm px-4" style={{ direction: 'rtl' }}>
               {modal.text}
             </div>
           </div>
